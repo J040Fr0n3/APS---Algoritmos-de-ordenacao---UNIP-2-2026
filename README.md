@@ -53,5 +53,5 @@ A aplicação conta com uma interface web para visualização dos resultados, fi
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/J040Fr0n3/NOME_DO_SEU_REPOSITORIO.git](https://github.com/J040Fr0n3/NOME_DO_SEU_REPOSITORIO.git)
+   git clone [https://github.com/J040Fr0n3/APS---Algoritmos-de-ordenacao---UNIP-2-2026.git](https://github.com/J040Fr0n3/APS---Algoritmos-de-ordenacao---UNIP-2-2026.git)
    cd NOME_DO_SEU_REPOSITORIO
