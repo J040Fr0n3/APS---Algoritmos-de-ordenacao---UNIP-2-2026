@@ -1,0 +1,31 @@
+/*
+body { 
+    background-color: #f8f9fa; 
+}
+        
+.metric-card { 
+    transition: transform 0.2s; 
+}
+        
+.metric-card:hover { 
+    transform: translateY(-3px); 
+}
+        
+.badge-metric { 
+    font-size: 0.9em; 
+}
+*/
+
+
+
+/* Cada "página" começa escondida */
+.pagina {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* A página que deve aparecer por padrão fica visível */
+.pagina.ativa {
+    display: block;
+}
+
