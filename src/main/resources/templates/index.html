@@ -10,39 +10,24 @@
 </head>
 <body>
 
-    <div class="app-container">
+    <nav>
+        <div class="logo">2ª APS 2026</div>
+        <ul class="nav-links">
+            <li><button class="btn" onclick="navegarPara('pagina-home')">Home</button></li>
+            <li><button class="btn" onclick="navegarPara('pagina-compair')">Compair</button></li>
+            <li><button class="btn" onclick="navegarPara('pagina-contact')">Contact</button></li> 
+        </ul>
+    </nav>
 
-        <!-- ================= TELA 1: PÁGINA PRINCIPAL ================= -->
-        <div id="pagina-home" class="pagina ativa">
-            <h1>Bem-vindo!</h1>
-            <p>Você está na página principal. Clique no botão abaixo para ir para a "outra página" sem recarregar o site.</p>
-            <button class="btn" onclick="navegarPara('pagina-detalhes')">Ir para a Página 2</button>
-            <button class="btn btn-voltar" onclick="navegarPara('pagina-contato')">Ir para a Página 3</button>
-        </div>
 
-        <!-- ================= TELA 2: SEGUNDA PÁGINA ================= -->
-        <div id="pagina-detalhes" class="pagina">
-            <h1>Segunda Página</h1>
-            <p>Pronto! Aqui está o conteúdo da segunda página. Viu só? A página não recarregou de verdade.</p>
-            <button class="btn btn-voltar" onclick="navegarPara('pagina-home')">Voltar para o Início</button>
-            <button class="btn btn-voltar" onclick="navegarPara('pagina-contato')">Ir para a Página 3</button>
-        </div>
-
-        <!-- ================= TELA 3: TECEIRA PÁGINA ================= -->
-        <div id="pagina-contato" class="pagina">
-            <h1>Terceira Página</h1>
-            <p>Pronto! Aqui está o conteúdo da terceira página. Viu só? A página não recarregou de verdade.</p>
-            <button class="btn btn-voltar" onclick="navegarPara('pagina-detalhes')">Ir para a Página 2</button>
-            <button class="btn btn-voltar" onclick="navegarPara('pagina-home')">Voltar para o Início</button>
-        </div>
-
-    </div>
-
-<!-- fim da tentativa de 2 telas -->
-
-    <div class="container py-4">
+        <!-- Home -->
+    
+        <div id="pagina-home" class="page">
+        <div class="app-container"></div>
+            <h1>Home</h1>
+            <div class="container py-4">
         <header class="pb-3 mb-4 border-bottom">
-            <h1 class="fs-3 fw-bold text-dark">APS 2026 - Benchmark de Algoritmos de Ordenação</h1>
+            <h1 class="header-txt">APS 2026 - Benchmark de Algoritmos de Ordenação</h1>
             <p class="text-muted mb-0">Comparativo de tempo, comparações, escritas e trocas entre Selection, Insertion, Merge e Quick Sort em bases do INPE.</p>
         </header>
 
@@ -203,6 +188,62 @@
             </div>
         </div>
     </div>
+
+        </div>
+
+        <!-- Compair -->
+        <div id="pagina-compair" class="page">
+            <h1>Compair</h1>
+            <p>Pronto! Aqui está o conteúdo da segunda página. Viu só? A página não recarregou de verdade.</p>
+            <button class="btn btn-voltar" onclick="navegarPara('pagina-home')">Voltar para o Início</button>
+            <button class="btn btn-voltar" onclick="navegarPara('pagina-contact')">Ir para a Página 3</button>
+        </div>
+
+        <!-- Contact -->
+        <div id="pagina-contact" class="page active">
+            
+            <h1>Contato</h1>
+            <p>Caso tenha encontrado algum problema, por favor, entre em contato conosco.</p>
+            
+            <div class="contact-box">
+                <div class="input-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="subject">Assunto</label>
+                    <input type="text" id="subject" name="subject" placeholder="Digite o assunto da mensagem" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" placeholder="Digite sua mensagem" required rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar</button>
+            </div>
+
+        </div>
+
+    <footer>
+        
+        <div class="container-footer">
+            <p>&copy; 2026 Seu Nome. Todos os direitos reservados.</p>
+        </div>
+        
+    </footer>
+
+    </div>
+
+<!-- fim da tentativa de 2 telas -->
+
+    
 
 <!-- Bootstrap 5 JS -->
 <!-- <script href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
