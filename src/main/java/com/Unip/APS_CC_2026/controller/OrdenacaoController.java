@@ -2,7 +2,9 @@ package com.Unip.APS_CC_2026.controller;
 
 import com.Unip.APS_CC_2026.Service.CsvReaderService;
 import com.Unip.APS_CC_2026.Service.OrdenacaoService;
+import com.Unip.APS_CC_2026.Service.PrevisaoService;
 import com.Unip.APS_CC_2026.dto.ResultadoBenchmark;
+import com.Unip.APS_CC_2026.dto.ResultadoPrevisao;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,12 @@ public class OrdenacaoController {
 
     private final CsvReaderService csvReaderService;
     private final OrdenacaoService ordenacaoService;
+    private final PrevisaoService previsaoService;
 
-    public OrdenacaoController(CsvReaderService csvReaderService, OrdenacaoService ordenacaoService) {
+    public OrdenacaoController(CsvReaderService csvReaderService, OrdenacaoService ordenacaoService, PrevisaoService previsaoService) {
         this.csvReaderService = csvReaderService;
         this.ordenacaoService = ordenacaoService;
+		this.previsaoService = previsaoService;
     }
 
     @GetMapping("/")
@@ -62,7 +66,14 @@ public class OrdenacaoController {
         if (resultados.containsKey("QuickSort")) {
             model.addAttribute("registrosExemplo", resultados.get("QuickSort").getRegistrosOrdenados());
         }
-
+        
+        ResultadoPrevisao previsao = previsaoService.calculcarPrevisaoParaEstado(estado);
+        if(previsao != null) {
+        	model.addAttribute("previsao", previsao);
+        } else {
+        	model.addAttribute("avisoPrevisao", "Não há dados cronológicos suficientes para gerar uma previsão (minimo de 2 meses).");
+        }
+        
         return "index";
     }
     
