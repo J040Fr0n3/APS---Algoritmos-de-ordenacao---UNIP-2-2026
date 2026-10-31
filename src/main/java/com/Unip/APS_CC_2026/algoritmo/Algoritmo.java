@@ -122,48 +122,59 @@ public class Algoritmo {
 	// QUICK SORT
 	// ==========================================
 	public void quickSort(Registro[] vetor, Comparator<Registro> comp, Estatisticas e) {
-		quickSort(vetor, 0, vetor.length - 1, comp, e);
+	    if (vetor == null || vetor.length <= 1) return;
+	    quickSort(vetor, 0, vetor.length - 1, comp, e);
 	}
-	
+
 	private void quickSort(Registro[] vetor, int inicio, int fim, Comparator<Registro> comp, Estatisticas e) {
-		if (inicio < fim) {
-			int pivo = particionar(vetor, inicio, fim, comp, e);
-			
-			quickSort(vetor, inicio, pivo - 1, comp, e);
-			quickSort(vetor, pivo + 1, fim, comp, e);
-		}
+	    if (inicio < fim) {
+	        int pivo = particionar(vetor, inicio, fim, comp, e);
+	        
+	        quickSort(vetor, inicio, pivo - 1, comp, e);
+	        quickSort(vetor, pivo + 1, fim, comp, e);
+	    }
 	}
-	
+
 	private int particionar(Registro[] vetor, int inicio, int fim, Comparator<Registro> comp, Estatisticas e) {
-		Registro pivo = vetor[fim];
-		int i = inicio - 1;
-		
-		for (int j = inicio; j < fim; j++) {
-			e.comparacoes++;
-			
-			// Substitui: vetor[j] <= pivo
-			if (comp.compare(vetor[j], pivo) <= 0) {
-				i++;
-				
-				if (i != j) {
-					trocar(vetor, i, j, e);
-				}
-			}
-		}
-		
-		if (i + 1 != fim) {
-			trocar(vetor, i + 1, fim, e);
-		}
-		
-		return i + 1;
+	    // 1. Proteção contra StackOverflow: Escolhe a mediana entre início, meio e fim
+	    int meio = inicio + (fim - inicio) / 2;
+	    
+	    if (comp.compare(vetor[meio], vetor[inicio]) < 0) trocar(vetor, inicio, meio, e);
+	    if (comp.compare(vetor[fim], vetor[inicio]) < 0) trocar(vetor, inicio, fim, e);
+	    if (comp.compare(vetor[meio], vetor[fim]) < 0) trocar(vetor, meio, fim, e);
+	    
+	    // Coloca a mediana temporariamente na última posição (onde seu código espera o pivô)
+	    trocar(vetor, meio, fim, e);
+
+	    // 2. Sua lógica original preservada a partir daqui
+	    Registro pivo = vetor[fim];
+	    int i = inicio - 1;
+	    
+	    for (int j = inicio; j < fim; j++) {
+	        e.comparacoes++;
+	        
+	        if (comp.compare(vetor[j], pivo) <= 0) {
+	            i++;
+	            
+	            if (i != j) {
+	                trocar(vetor, i, j, e);
+	            }
+	        }
+	    }
+	    
+	    if (i + 1 != fim) {
+	        trocar(vetor, i + 1, fim, e);
+	    }
+	    
+	    return i + 1;
 	}
-	
+
 	private void trocar(Registro[] vetor, int i, int j, Estatisticas e) {
-		Registro temp = vetor[i];
-		vetor[i] = vetor[j];
-		vetor[j] = temp;
-		
-		e.escritas += 2;
-		e.trocas++;
+	    Registro temp = vetor[i];
+	    vetor[i] = vetor[j];
+	    vetor[j] = temp;
+	    
+	    e.escritas += 2;
+	    e.trocas++;
 	}
 }
