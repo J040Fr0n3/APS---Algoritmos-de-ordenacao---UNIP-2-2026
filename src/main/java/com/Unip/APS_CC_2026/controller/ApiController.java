@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +45,7 @@ public class ApiController {
 			return ResponseEntity.badRequest().body(Map.of("erro", "Selecione pelo menos um críterio/filtro de ordenação."));
 		}	
 		
-		List<String> filtrosPermitidos = List.of("municipio", "bioma", "data_pas");
+		List<String> filtrosPermitidos = List.of("municipio", "bioma", "data_pas", "Municipio", "Bioma", "Data");
 	    for (String filtro : filtros) {
 	        if (!filtrosPermitidos.contains(filtro)) {
 	            return ResponseEntity.badRequest().body(Map.of("erro", "O filtro '" + filtro + "' não é válido. Escolha entre: municipio, bioma ou data_pas."));

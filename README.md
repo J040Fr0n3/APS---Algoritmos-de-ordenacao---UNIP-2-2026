@@ -124,7 +124,7 @@ Os parâmetros são enviados como **form data / query string** (não JSON).
 | `POST` | `/api/ordenar` | `estado`, `filtros` (um ou mais) | Benchmark dos 4 algoritmos para um estado, amostra ordenada e previsão. |
 | `POST` | `/api/comparar-estados` | `estado1`, `estado2`, `filtros` | Benchmark e previsão para dois estados. |
 
-Critérios aceitos em `filtros` (sem diferenciar maiúsculas/minúsculas): `id_bdq`, `foco_id`, `lat`, `lon`, `data_pas` (ou `data`), `pais`, `estado`, `municipio`, `bioma`. Um valor desconhecido cai no critério padrão `estado`.
+Critérios aceitos em `filtros`: `municipio`, `bioma` e `data`/`data_pas` (sem diferenciar maiúsculas/minúsculas, desde que a validação do `ApiController` esteja normalizando o valor). Qualquer outro valor retorna `400 Bad Request` com a mensagem `O filtro '<valor>' não é válido`.
 
 Respostas de erro (`400 Bad Request`, corpo `{"erro": "..."}`):
 
@@ -188,7 +188,7 @@ Cada combinação foi medida **uma única vez**, portanto os tempos não são m�
 
 - Os "filtros" da interface definem **critérios de ordenação**; não há filtro de linhas por município, intervalo de datas ou bioma. O único recorte é o estado.
 - Os quatro algoritmos rodam em toda requisição, e os registros exibidos vêm do resultado do Quick Sort.
-- O Quick Sort usa particionamento de Lomuto com `<=` e seleção de pivô por três elementos; com muitas chaves repetidas (ex.: ordenar por bioma ou estado em uma UF de bioma único) o particionamento fica desbalanceado e o tempo se aproxima de O(n²).
+- O Quick Sort usa particionamento de Lomuto com `<=`, e a rotina de "mediana de três" deixa na prática o **maior** dos três elementos como pivô. Com muitas chaves repetidas (ex.: ordenar por bioma em uma UF de bioma único), as partições ficam desbalanceadas e o tempo se aproxima de O(n²).
 - Os CSVs são lidos do disco a cada requisição (e a previsão lê novamente), sem cache.
 - A leitura divide as linhas por vírgula (`split(",")`), então campos com vírgula entre aspas não são tratados.
 - Os testes automatizados se limitam ao `contextLoads` do Spring; não há testes unitários dos algoritmos.
