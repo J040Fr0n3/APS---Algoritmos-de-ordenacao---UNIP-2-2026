@@ -138,11 +138,13 @@ public class Algoritmo {
 	private int particionar(Registro[] vetor, int inicio, int fim, Comparator<Registro> comp, Estatisticas e) {
 	    // 1. Proteção contra StackOverflow: Escolhe a mediana entre início, meio e fim
 	    int meio = inicio + (fim - inicio) / 2;
-	    
+	    e.comparacoes++;
 	    if (comp.compare(vetor[meio], vetor[inicio]) < 0) trocar(vetor, inicio, meio, e);
+	    e.comparacoes++;
 	    if (comp.compare(vetor[fim], vetor[inicio]) < 0) trocar(vetor, inicio, fim, e);
+	    e.comparacoes++;
 	    if (comp.compare(vetor[meio], vetor[fim]) < 0) trocar(vetor, meio, fim, e);
-	    
+
 	    // Coloca a mediana temporariamente na última posição (onde seu código espera o pivô)
 	    trocar(vetor, meio, fim, e);
 

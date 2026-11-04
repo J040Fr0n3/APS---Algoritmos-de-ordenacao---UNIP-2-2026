@@ -87,7 +87,7 @@ public class ApiController {
 			return ResponseEntity.badRequest().body(Map.of("erro", "Selecione pelo menos um critério/filtro de ordenação"));
 		}
 		
-		List<String> filtrosPermitidos = List.of("municipio", "bioma", "data_pas");
+		List<String> filtrosPermitidos = List.of("municipio", "bioma", "data_pas", "Data", "Municipio", "Bioma");
 	    for (String filtro : filtros) {
 	        if (!filtrosPermitidos.contains(filtro)) {
 	            return ResponseEntity.badRequest().body(Map.of("erro", "O filtro '" + filtro + "' não existe."));
