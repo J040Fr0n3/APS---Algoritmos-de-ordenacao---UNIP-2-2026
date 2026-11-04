@@ -44,7 +44,14 @@ public class ApiController {
 		
 		if(filtros == null || filtros.isEmpty()) {
 			return ResponseEntity.badRequest().body(Map.of("erro", "Selecione pelo menos um críterio/filtro de ordenação."));
-		}
+		}	
+		
+		List<String> filtrosPermitidos = List.of("municipio", "bioma", "data_pas");
+	    for (String filtro : filtros) {
+	        if (!filtrosPermitidos.contains(filtro)) {
+	            return ResponseEntity.badRequest().body(Map.of("erro", "O filtro '" + filtro + "' não é válido. Escolha entre: municipio, bioma ou data_pas."));
+	        }
+	    }
 		
 		Map<String, ResultadoBenchmark> resultados = ordenacaoService.executarBenchmark(estado, filtros);
 		
@@ -79,6 +86,13 @@ public class ApiController {
 		if(filtros == null || filtros.isEmpty()) {
 			return ResponseEntity.badRequest().body(Map.of("erro", "Selecione pelo menos um critério/filtro de ordenação"));
 		}
+		
+		List<String> filtrosPermitidos = List.of("municipio", "bioma", "data_pas");
+	    for (String filtro : filtros) {
+	        if (!filtrosPermitidos.contains(filtro)) {
+	            return ResponseEntity.badRequest().body(Map.of("erro", "O filtro '" + filtro + "' não existe."));
+	        }
+	    }
 		
 		if (estado1.equals(estado2)) {
             return ResponseEntity.badRequest().body(Map.of("erro", "Por favor, selecione dois estados diferentes."));
