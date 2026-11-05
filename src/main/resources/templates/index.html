@@ -348,11 +348,39 @@
         <!-- ========================================== -->
         <!-- 3. ABA SOBRE -->
         <!-- ========================================== -->
-        <section id="aba-sobre" class="hidden bg-white p-12 rounded-xl shadow-sm border border-slate-200 text-center space-y-4">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-50 text-blue-600 rounded-full text-2xl font-bold mb-2">🚧</div>
-            <h2 class="text-2xl font-bold text-slate-800">Em Construção</h2>
-            <p class="text-slate-500 max-w-md mx-auto">A documentação detalhada dos algoritmos e estruturação do projeto está sendo desenvolvida. Em breve estará disponível nesta seção.</p>
-        </section>
+		<section id="aba-sobre" class="hidden bg-white p-8 rounded-xl shadow-sm border border-slate-200 space-y-6">
+		    <div class="text-center">
+		        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-50 text-blue-600 rounded-full text-2xl mb-2">
+		            📄
+		        </div>
+		        <h2 class="text-2xl font-bold text-slate-800">Documentação do Projeto</h2>
+		        <p class="text-slate-500 max-w-xl mx-auto">Confira abaixo os detalhes da estruturação da plataforma e a análise dos algoritmos de ordenação.</p>
+		    </div>
+
+		    <!-- Visualizador do PDF embutido -->
+		    <div class="w-full h-[600px] border border-slate-200 rounded-lg overflow-hidden shadow-inner bg-slate-50">
+		        <object th:data="@{/doc/documentacao.pdf}" type="application/pdf" class="w-full h-full">
+		            <iframe th:src="@{/doc/documentacao.pdf}" class="w-full h-full" style="border: none;">
+		                <div class="flex flex-col items-center justify-center h-full space-y-4">
+		                    <p class="text-slate-600">Seu navegador não suporta a visualização de PDFs inline.</p>
+		                    <a th:href="@{/doc/documentacao.pdf}" class="text-blue-600 hover:underline font-medium">
+		                        Clique aqui para abrir o documento
+		                    </a>
+		                </div>
+		            </iframe>
+		        </object>
+		    </div>
+
+		    <!-- Botão de Download Alternativo -->
+		    <div class="flex justify-center pt-2">
+		        <a th:href="@{/doc/documentacao.pdf}" download="Documentacao_APS.pdf" class="inline-flex items-center justify-center px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+		            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+		            </svg>
+		            Baixar PDF
+		        </a>
+		    </div>
+		</section>
 
     </main>
 
